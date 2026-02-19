@@ -1,4 +1,17 @@
+# Terraform
 .terraform/
 terraform.tfstate
 terraform.tfstate.*
 *.tfvars
+
+# Docker
+*.tar
+*.img
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
