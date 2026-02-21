@@ -1,12 +1,12 @@
 # Terraform-Deployed Dockerized Flask Application on AWS
 
 ## Overview
-This project demonstrates the end-to-end deployment of a containerized web application on AWS using Infrastructure as Code (IaC). A lightweight Flask application is packaged with Docker and deployed to an EC2 instance provisioned via Terraform, showcasing core cloud engineering and DevOps fundamentals.
+This project demonstrates the end-to-end deployment of a containerized web application on AWS using Infrastructure as Code. A lightweight Flask application is packaged with Docker and deployed to an EC2 instance provisioned via Terraform.
 
 The repository is designed to reflect professional best practices, including reproducible infrastructure, artifact exclusion, and source-controlled configuration.
 
 ## Purpose
-This project is intended as a learning and portfolio artifact to demonstrate foundational skills in cloud infrastructure, containerization, and DevOps workflows.
+This project is intended as a learning portfolio to demonstrate my foundational skills in cloud infrastructure, containerization, and DevOps workflows.
 
 ---
 
@@ -33,8 +33,6 @@ This project is intended as a learning and portfolio artifact to demonstrate fou
 │ ├── main.tf
 │ ├── variables.tf
 │ └── outputs.tf
-│ └── terraform.tfstate
-│ └── terraform.tfstate.backup
 │ └── vpc.tf
 ├── Dockerfile
 ├── requirements.txt
@@ -49,7 +47,6 @@ This project is intended as a learning and portfolio artifact to demonstrate fou
 - Terraform-managed AWS infrastructure (reproducible and declarative)
 - Secure networking via AWS security groups
 - Automated instance bootstrapping using EC2 user data
-- Clean Git history with generated artifacts excluded
 
 ---
 
