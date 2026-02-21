@@ -25,7 +25,7 @@ This project is intended as a learning and portfolio artifact to demonstrate fou
 4. Application is exposed via EC2 public IP and port mapping
 
 ---
-
+.
 ## Repository Structure
 ├── app/
 │ └── app.py
