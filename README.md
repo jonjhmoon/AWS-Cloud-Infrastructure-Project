@@ -33,11 +33,15 @@ This project is intended as a learning and portfolio artifact to demonstrate fou
 │ ├── main.tf
 │ ├── variables.tf
 │ └── outputs.tf
+│ └── terraform.tfstate
+│ └── terraform.tfstate.backup
+│ └── vpc.tf
 ├── Dockerfile
 ├── requirements.txt
 ├── .gitignore
 └── README.md
 ```
+
 ---
 
 ## Key Features
