@@ -18,7 +18,7 @@ This project is intended as a learning and portfolio artifact to demonstrate fou
 - **Infrastructure as Code:** Terraform
 - **Version Control:** Git + GitHub
 
-High-level flow:
+## High-level flow:
 1. Flask app is containerized using Docker
 2. Terraform provisions AWS infrastructure (EC2, networking, security groups)
 3. EC2 user data installs Docker and runs the application container
