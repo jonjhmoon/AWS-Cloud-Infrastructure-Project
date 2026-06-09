@@ -15,6 +15,27 @@ spec:
       containers:
         - name: flask
           image: doejon/flask-app
-          imagePullPolicy: Never
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
+  
+          env:
+          - name: APP_ENV
+            valueFrom:
+              configMapKeyRef:
+                name: flask-config
+                key: APP_ENV
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 15
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10

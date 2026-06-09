@@ -4,17 +4,22 @@ import os
 app = Flask(__name__)
 
 @app.route("/")
+def home():
+    app_env = os.getenv("APP_ENV", "not set")
+    return f"Environment: {app_env}"
+
+@app.route("/index")
 def index():
     # return 'Hello World'
     return jsonify({
         "service": "example-cloud-app",
-        "environment": os.getenv("ENV", "unknown"),
+        "environment": os.getenv('APP_ENV', 'not set'),
         "version": os.getenv("VERSION", "dev")
     })
 
 @app.route("/health")
 def health():
-    return "ok", 200
+    return {"status": "healthy"}, 200
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
