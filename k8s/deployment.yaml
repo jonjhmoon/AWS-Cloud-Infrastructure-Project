@@ -14,6 +14,7 @@ spec:
     spec:
       containers:
         - name: flask
-          image: <docker-username>/flask-app
+          image: doejon/flask-app
+          imagePullPolicy: Never
           ports:
             - containerPort: 8080
