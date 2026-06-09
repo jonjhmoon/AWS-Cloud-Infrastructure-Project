@@ -19,7 +19,12 @@ def index():
 
 @app.route("/health")
 def health():
-    return {"status": "healthy"}, 200
+    return "error", 500
+    # return {"status": "healthy"}, 200
+
+@app.route("/kill")
+def kill():
+    os._exit(1)
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
