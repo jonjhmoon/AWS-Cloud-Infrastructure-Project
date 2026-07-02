@@ -187,7 +187,7 @@ Current infrastructure includes:
 
 ## Docker
 
-The application is packaged into a lightweight Docker image using a multi-step, reproducible build process.
+The application is packaged into a lightweight Docker image using a reproducible build process.
 
 Improvements made during development:
 
@@ -200,7 +200,7 @@ Improvements made during development:
 
 ## Lessons Learned
 
-Throughout development, several real-world engineering challenges were encountered and resolved:
+Throughout development, several challenges were resolved:
 
 * Optimizing oversized Docker images
 * Managing Git repository history and large generated files
