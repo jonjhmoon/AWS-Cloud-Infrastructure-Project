@@ -1,91 +1,227 @@
-# Terraform-Deployed Dockerized Flask Application on AWS
+# Cloud-Native Flask Application
 
-## Overview
-This project demonstrates the end-to-end deployment of a containerized web application on AWS using Infrastructure as Code. A lightweight Flask application is packaged with Docker and deployed to an EC2 instance provisioned via Terraform.
+A cloud-native web application built with **Python**, **Flask**, **Docker**, **Terraform**, **AWS**, and **Kubernetes** to demonstrate modern Cloud Engineering and DevOps practices. The project emphasizes Infrastructure as Code, containerization, Kubernetes orchestration, and reproducible deployments.
 
-The repository is designed to reflect professional best practices, including reproducible infrastructure, artifact exclusion, and source-controlled configuration.
+---
 
-## Purpose
-This project is intended as a learning portfolio to demonstrate my foundational skills in cloud infrastructure, containerization, and DevOps workflows.
+## Project Overview
+
+This project began as a simple Flask web application and evolved into a cloud-native deployment platform.
+
+Key goals included:
+
+* Containerizing applications with Docker
+* Automating infrastructure using Terraform
+* Deploying workloads to Kubernetes
+* Managing configuration through ConfigMaps
+* Implementing Kubernetes health checks
+* Demonstrating scalable, reproducible deployments
+* Following Infrastructure as Code (IaC) best practices
 
 ---
 
 ## Architecture
-- **Application:** Python Flask web application
-- **Containerization:** Docker
-- **Cloud Provider:** AWS
-- **Compute:** EC2 (Free Tier eligible instance)
-- **Infrastructure as Code:** Terraform
-- **Version Control:** Git + GitHub
 
-## High-level flow:
-1. Flask app is containerized using Docker
-2. Terraform provisions AWS infrastructure (EC2, networking, security groups)
-3. EC2 user data installs Docker and runs the application container
-4. Application is exposed via EC2 public IP and port mapping
+```text
+                        GitHub Repository
+                               │
+                               ▼
+                     Docker Image Build
+                               │
+                               ▼
+                         Docker Hub Registry
+                               │
+                               ▼
+                   Kubernetes Deployment
+                               │
+            ┌──────────────────┴──────────────────┐
+            ▼                                     ▼
+        Flask Pod                           Flask Pod
+            │                                     │
+            └──────────────┬──────────────────────┘
+                           ▼
+                   Kubernetes Service
+                           │
+                           ▼
+                        Application
+```
 
 ---
-```bash
+
+## Technology Stack
+
+### Cloud
+
+* AWS
+* Terraform
+
+### Containerization
+
+* Docker
+* Docker Hub
+
+### Container Orchestration
+
+* Kubernetes (Kind)
+
+### Backend
+
+* Python
+* Flask
+
+### DevOps
+
+* Git
+* GitHub
+
+---
+
+## Features
+
+### Application
+
+* Python Flask web application
+* Dockerized runtime
+* Environment-based configuration
+* Health endpoint
+
+### Infrastructure
+
+* Infrastructure as Code with Terraform
+* Version-controlled infrastructure
+* Automated cloud resource provisioning
+
+### Kubernetes
+
+* Deployment resources
+* Service resources
+* ConfigMaps
+* Readiness probes
+* Liveness probes
+* Replica management
+
+### Source Control
+
+* Git-based workflow
+* Optimized `.gitignore`
+* Clean repository structure
+* Excluded Terraform state and generated artifacts
+
+---
+
 ## Repository Structure
-├── app/
-│ └── app.py
-├── terraform/
-│ ├── main.tf
-│ ├── variables.tf
-│ └── outputs.tf
-│ └── vpc.tf
-├── Dockerfile
+
+```text
+.
+├── app.py
 ├── requirements.txt
+│
+├── k8s/
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   ├── configmap.yaml
+│
+├── terraform/
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+|   ├── ec2.tf
+│   └── providers.tf
+│
+├── .dockerignore
 ├── .gitignore
 └── README.md
 ```
 
 ---
 
-## Key Features
-- Dockerized Flask application for consistent runtime behavior
-- Terraform-managed AWS infrastructure (reproducible and declarative)
-- Secure networking via AWS security groups
-- Automated instance bootstrapping using EC2 user data
+## Kubernetes Components
+
+### Deployment
+
+* Deploys multiple replicas of the Flask application
+* Supports rolling updates
+* Enables horizontal scaling
+
+### Service
+
+* Provides a stable endpoint for accessing the application
+* Performs service discovery and load balancing
+
+### ConfigMap
+
+Application configuration is managed outside of source code.
+
+Example:
+
+```yaml
+APP_ENV: kubernetes
+```
+
+### Readiness Probe
+
+Determines when a Pod is ready to receive traffic.
+
+Validated by intentionally failing the health endpoint and confirming Kubernetes removed the Pod from Service endpoints.
+
+### Liveness Probe
+
+Determines whether Kubernetes should restart a failed container.
+
+Validated by forcing health check failures and observing Kubernetes automatically recover the workload.
 
 ---
 
-## Prerequisites
-- AWS account (Free Tier)
-- Terraform installed locally
-- Docker installed locally
-- AWS credentials configured (`aws configure`)
-- Git
+## Infrastructure as Code
+
+Terraform provisions cloud infrastructure using declarative configuration.
+
+Current infrastructure includes:
+
+* AWS compute resources
+* Networking configuration
+* Security configuration
+* Version-controlled infrastructure definitions
 
 ---
 
-## Deployment Steps
+## Docker
 
-### 1. Build and Push Docker Image
-docker build -t <docker-username>/flask-app .
-docker push <docker-username>/flask-app
+The application is packaged into a lightweight Docker image using a multi-step, reproducible build process.
 
-### 2. Initialize and Apply Terraform
-cd terraform
-terraform init
-terraform apply
+Improvements made during development:
 
-Terraform will output the EC2 public IP once provisioning is complete.
+* Added `.dockerignore`
+* Removed unnecessary build artifacts
+* Optimized image size
+* Published images to Docker Hub
 
-### Infrastructure and DevOps Best Practices
- - Terraform provider binaries and state files are excluded from version control
- - Python virtual environments are not committed
- - Infrastructure changes are validated using terraform plan
- - Application artifacts are rebuilt deterministically
+---
 
-### Limitations
- - Single EC2 instance (no load balancing or auto-scaling)
- - Stateless application
- - No CI/CD pipeline implemented (intentionally scoped)
+## Lessons Learned
 
-### Future Improvements
- - Add remote Terraform state (S3 + DynamoDB)
- - Introduce CI/CD with GitHub Actions
- - Migrate to ECS or EKS
- - Add observability (CloudWatch logs and metrics)
- - Persist state using a managed database
+Throughout development, several real-world engineering challenges were encountered and resolved:
+
+* Optimizing oversized Docker images
+* Managing Git repository history and large generated files
+* Excluding Terraform state from version control
+* Debugging Kubernetes deployments
+* Validating readiness and liveness probes
+* Separating application configuration using ConfigMaps
+* Troubleshooting container networking and deployment issues
+
+## Future Improvements
+
+* GitHub Actions CI/CD pipeline
+* Deploy to Amazon EKS
+* Helm chart packaging
+* Prometheus monitoring
+* Grafana dashboards
+* Centralized logging
+* PostgreSQL persistence
+* Secrets management
+* Horizontal Pod Autoscaler
+* Ingress controller
+* TLS/HTTPS
+* Automated testing
+* Blue/Green or Canary deployments
