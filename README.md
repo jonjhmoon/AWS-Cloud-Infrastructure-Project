@@ -212,7 +212,6 @@ Throughout development, several challenges were resolved:
 
 ## Future Improvements
 
-* GitHub Actions CI/CD pipeline
 * Deploy to Amazon EKS
 * Helm chart packaging
 * Prometheus monitoring
