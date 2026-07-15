@@ -213,14 +213,9 @@ Throughout development, several challenges were resolved:
 ## Future Improvements
 
 * Deploy to Amazon EKS
-* Helm chart packaging
 * Prometheus monitoring
 * Grafana dashboards
 * Centralized logging
-* PostgreSQL persistence
 * Secrets management
-* Horizontal Pod Autoscaler
-* Ingress controller
 * TLS/HTTPS
 * Automated testing
-* Blue/Green or Canary deployments
