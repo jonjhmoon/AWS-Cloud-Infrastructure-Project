@@ -205,10 +205,8 @@ Throughout development, several challenges were resolved:
 * Optimizing oversized Docker images
 * Managing Git repository history and large generated files
 * Excluding Terraform state from version control
-* Debugging Kubernetes deployments
+* Debugging ConfigMaps misconfiguration
 * Validating readiness and liveness probes
-* Separating application configuration using ConfigMaps
-* Troubleshooting container networking and deployment issues
 
 ## Future Improvements
 
